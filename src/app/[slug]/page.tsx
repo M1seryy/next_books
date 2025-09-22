@@ -1,11 +1,8 @@
 import { fetchBookByWorkId } from "@/entities/api/books/books.api";
+import { BookPageProps } from "@/shared/types/types";
 import Image from "next/image";
 
 export const revalidate = 30;
-
-type BookPageProps = {
-  params: Promise<{ slug: string }>;
-};
 
 export default async function BookPage({ params }: BookPageProps) {
   const { slug } = await params;

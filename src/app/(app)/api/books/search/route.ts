@@ -1,3 +1,4 @@
+import { Doc } from "@/shared/types/types";
 import { NextResponse } from "next/server";
 
 export const revalidate = 30;
@@ -14,12 +15,7 @@ export async function GET(request: Request) {
     if (!res.ok) return NextResponse.json({ items: [] });
     const data = await res.json();
     const docs = Array.isArray(data.docs) ? data.docs : [];
-    type Doc = {
-        key?: string;
-        title?: string;
-        author_name?: string[];
-        cover_i?: number;
-    };
+
     const items = docs.slice(0, 12).map((doc: Doc) => ({
         id: String(doc.key || "").replace("/works/", ""),
         title: String(doc.title || "Untitled"),

@@ -1,3 +1,5 @@
+import { Doc } from "@/shared/types/types";
+
 const OPEN_LIBRARY_BASE_URL = "https://openlibrary.org";
 
 export async function fetchBooks() {
@@ -22,13 +24,7 @@ export async function searchBooksByTitle(title: string) {
     const res = await fetch(url.toString(), { next: { revalidate: 30 } });
     if (!res.ok) return [] as { id: string; title: string; author?: string; coverUrl?: string }[];
     const data = await res.json();
-    type Doc = {
-        key?: string;
-        title?: string;
-        author_name?: string[];
-        cover_i?: number;
-        first_publish_year?: number;
-    };
+
     const docs = Array.isArray(data.docs) ? (data.docs as Doc[]) : [];
     return docs.slice(0, 12).map((doc: Doc) => ({
         id: String(doc.key || "").replace("/works/", ""),
