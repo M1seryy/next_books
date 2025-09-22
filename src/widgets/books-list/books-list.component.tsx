@@ -4,14 +4,7 @@ import { useMemo } from "react";
 import { BookCard } from "@/shared/ui/book-card";
 import { useBooksSortStore } from "@/shared/store/books.store";
 import SortControls from "./sort-controls";
-
-export type BooksListItem = {
-  id: string;
-  title: string;
-  author?: string;
-  coverUrl?: string;
-  year?: number;
-};
+import { BooksListItem } from "@/shared/types/types";
 
 export const BooksList = ({ books }: { books: BooksListItem[] }) => {
   const order = useBooksSortStore(

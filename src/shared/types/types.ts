@@ -1,3 +1,5 @@
+import { useBooksSortStore } from "../store/books.store";
+
 export type Doc = {
     key?: string;
     title?: string;
@@ -8,4 +10,12 @@ export type Doc = {
 
 export type BookPageProps = {
     params: Promise<{ slug: string }>;
+};
+
+export type BooksListItem = {
+    id: string;
+    title: string;
+    author?: string;
+    coverUrl?: string;
+    year?: number;
 };

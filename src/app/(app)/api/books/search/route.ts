@@ -5,7 +5,7 @@ export const revalidate = 30;
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
-    const q = (searchParams.get("q") ?? "Harry Potter").trim();
+    const q = (searchParams.get("q") ?? "").trim();
 
     const url = new URL("https://openlibrary.org/search.json");
     url.searchParams.set("title", q);

@@ -14,7 +14,7 @@ export default async function HomePage({
   searchParams?: Promise<{ q?: string }>;
 }) {
   const sp = (await searchParams) ?? {};
-  const q = (sp.q ?? "Harry Potter").trim();
+  const q = (sp.q ?? "").trim();
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(booksListQueryOptions(q));
   const dehydratedState = dehydrate(queryClient);

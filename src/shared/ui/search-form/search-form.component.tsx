@@ -10,7 +10,7 @@ type FormValues = { q: string };
 export function SearchForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const defaultQ = (searchParams.get("q") ?? "Harry Potter").trim();
+  const defaultQ = (searchParams.get("q") ?? "").trim();
 
   const { register, handleSubmit, watch } = useForm<FormValues>({
     defaultValues: { q: defaultQ },
