@@ -17,11 +17,8 @@ export async function fetchBookByWorkId(workId: string) {
 }
 
 export async function searchBooksByTitle(title: string): Promise<BooksListItem[]> {
-    const isBrowser = typeof window !== "undefined";
-    const baseUrl = isBrowser
-        ? ""
-        : process.env.NEXT_PUBLIC_APP_URL
-        || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+    const baseUrl =
+        ("http://localhost:3000");
 
     const url = new URL(`${baseUrl}/api/books/search`);
     url.searchParams.set("q", (title && title.trim()) || "harry potter");
