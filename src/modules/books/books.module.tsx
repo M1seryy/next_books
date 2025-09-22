@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function BooksModule() {
   const searchParams = useSearchParams();
-  const q = (searchParams.get("q") ?? "Harry Potter").trim();
+  const q = (searchParams.get("q") ?? "harry potter").trim();
 
   const { data } = useQuery(booksListQueryOptions(q));
 

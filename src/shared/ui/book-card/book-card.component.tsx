@@ -17,10 +17,11 @@ const BookCard = ({ id, title, author, coverUrl, year }: BookCardProps) => {
     <Card className="group py-4 border border-gray-200 shadow-sm hover:shadow-lg hover:border-gray-300 transition-all duration-200 hover:-translate-y-0.5">
       <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
         <p className="text-tiny uppercase font-bold text-gray-500">Book</p>
-        {author ? (
+        {author || year ? (
           <small className="text-default-500">
-            by {author}
-            {year ? ` • ${year}` : ""}
+            {author ? `by ${author}` : ""}
+            {author && year ? " • " : ""}
+            {year ?? ""}
           </small>
         ) : null}
         <h4 className="font-bold text-large mt-1">

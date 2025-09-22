@@ -5,7 +5,7 @@ export const revalidate = 30;
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
-    const q = (searchParams.get("q") ?? "").trim();
+    const q = (searchParams.get("q") ?? "harry potter").trim();
 
     const url = new URL("https://openlibrary.org/search.json");
     url.searchParams.set("title", q);
@@ -21,6 +21,7 @@ export async function GET(request: Request) {
         title: String(doc.title || "Untitled"),
         author: Array.isArray(doc.author_name) && doc.author_name[0] ? doc.author_name[0] : undefined,
         coverUrl: doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg` : undefined,
+        year: typeof doc.first_publish_year === "number" ? doc.first_publish_year : undefined,
     }));
 
     return NextResponse.json({ items });
