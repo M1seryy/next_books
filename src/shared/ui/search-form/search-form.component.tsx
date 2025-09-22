@@ -26,21 +26,6 @@ export function SearchForm() {
     router.push(`?${params.toString()}`);
   };
 
-  // Debounce change -> push URL after 400ms
-  useEffect(() => {
-    const subscription = watch((values) => {
-      const q = (values.q ?? "").trim();
-      const handler = setTimeout(() => {
-        const params = new URLSearchParams(window.location.search);
-        if (q) params.set("q", q);
-        else params.delete("q");
-        router.push(`?${params.toString()}`);
-      }, 400);
-      return () => clearTimeout(handler);
-    });
-    return () => subscription.unsubscribe();
-  }, [router, watch]);
-
   return (
     <form className="mb-4 flex gap-2" onSubmit={handleSubmit(onSubmit)}>
       <Input
